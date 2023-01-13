@@ -1,0 +1,13 @@
+h1{
+    color: red;
+}
+.completed{
+    text-decoration: line-through;
+    color: gray;
+}
+.not{
+    text-decoration: underline;
+}
+th{
+    border: 1px solid black;
+}

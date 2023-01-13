@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracker History</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <h2>Enter A New Sleep Entry</h2>
+
+    <form action="/sleep/createSleepEntry" method='POST'>
+        <h4>Did I Have Trouble Falling Asleep?</h4>
+        <div>
+            <input type="radio" name="troubleFalling" value="Yes"/>
+            <label for="choice1">Yes</label>
+        
+            <input type="radio"  name="troubleFalling" value="No"/>
+            <label for="choice2">No</label>
+        </div>
+        <h4>Time I Went To Sleep?</h4>
+        <input id="st" type="datetime-local" placeholder="Sleep Time" name='sleepTime'>
+        <h4>Time I Woke Up?</h4>
+        <input id="aw" type="datetime-local" placeholder="Wake Time" name='wakeTime'>
+        <h4>Mood When I Woke Up</h4>
+        <input type="text" placeholder="Mood(s)" name='moodWhenAwake'>
+        <input type="submit">
+    </form>
+
+    <h2>History</h2>
+
+    <table class="table">
+        <tr>
+            <th>Trouble Falling Asleep?</th>
+            <th>Sleep Time</th>
+            <th>Wake Time</th>
+            <th>Total Time Slept</th>
+            <th>Mood When I Woke Up</th>
+        </tr>
+        <ul class="list"></ul>
+            <% sleeps.forEach( el => { %>
+        <tr>
+            <td class='sleepItem'><%= el.troubleFalling %></td>
+            <td class='sleepItem'><%= el.sleepTime %></td>
+            <td class='sleepItem'><%= el.wakeTime %></td>
+            <td class='hoursSlept'><%= el.timeAsleep %></td>
+            <td class='sleepItem'><%= el.moodWhenAwake %></td>
+
+            <span class='del'> Delete </span>
+            <% }) %>  
+        </tr>
+        </ul>
+    </table>
+
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
