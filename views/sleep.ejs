@@ -68,7 +68,7 @@
                 <p><%= hours %> hours and <%= minutes %> minutes</p>
             <td class='sleepItem' data-id='<%=el._id%>'><%= el.moodWhenAwake %></td>
             <td>
-                <span class='del'> Delete </span>
+                <span class='del' data-id='<%=el._id%>'> Delete </span>
             </td>
             <% }) %>  
         </tr>
