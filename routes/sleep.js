@@ -10,6 +10,6 @@ router.put('/markComplete', sleepController.markComplete)
 
 router.put('/markIncomplete', sleepController.markIncomplete)
 
-router.delete('/deleteTodo', sleepController.deleteTodo)
+router.delete('/deleteSleepEntry', sleepController.deleteSleepEntry)
 
 module.exports = router

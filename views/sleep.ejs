@@ -48,26 +48,28 @@
         <ul class="list"></ul>
             <% sleeps.forEach( el => { %>
         <tr>
-            <td class='sleepItem'><%= el.troubleFalling %></td>
-            <td class='sleepItem'>
+            <td class='sleepItem' data-id='<%=el._id%>'><%= el.troubleFalling %></td>
+            <td class='sleepItem' data-id='<%=el._id%>'>
                 <% var date = new Date() %>
                 <p>Date: <%= el.sleepTime.getDate() + '/' + (el.sleepTime.getMonth() + 1) + '/' + el.sleepTime.getFullYear() %></p>
                 <p>Time: <%= el.sleepTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></p>
             </td>
-            <td class='sleepItem'>                
+            <td class='sleepItem' data-id='<%=el._id%>'>                
                 <% var date = new Date() %>
                 <p>Date: <%= el.wakeTime.getDate() + '/' + (el.wakeTime.getMonth() + 1) + '/' + el.wakeTime.getFullYear() %></p>
                 <p>Time: <%= el.wakeTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></p>
             </td>
-            <td class='hoursSlept'><% var start = new Date(el.sleepTime) %>
-                <% var end = new Date(el.wakeTime) %>
-                <% var difference = end - start %>
-                <% var minutes = difference / 60000 %>
-                <% var hours = Math.floor(minutes / 60) %>
-                <% minutes = minutes % 60 %>
+            <td> <% var start = new Date(el.sleepTime) %>
+                 <% var end = new Date(el.wakeTime) %>
+                 <% var difference = end - start %>
+                 <% var minutes = difference / 60000 %>
+                 <% var hours = Math.floor(minutes / 60) %>
+                 <% minutes = minutes % 60 %>
                 <p><%= hours %> hours and <%= minutes %> minutes</p>
-            <td class='sleepItem'><%= el.moodWhenAwake %></td>
-            <td><span class='del'> Delete </span></td>
+            <td class='sleepItem' data-id='<%=el._id%>'><%= el.moodWhenAwake %></td>
+            <td>
+                <span class='del'> Delete </span>
+            </td>
             <% }) %>  
         </tr>
         </ul>

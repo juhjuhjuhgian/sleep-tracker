@@ -5,7 +5,6 @@
     display: grid;
     grid-template-columns: 25% 75%;
     grid-column-gap: 15px;
-
 }
 form {
     flex: 0.25;

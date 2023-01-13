@@ -45,10 +45,10 @@ module.exports = {
             console.log(err)
         }
     },
-    deleteTodo: async (req, res)=>{
-        console.log(req.body.todoIdFromJSFile)
+    deleteSleepEntry: async (req, res)=>{
+        console.log(req.body.sleepIdFromJSFile)
         try{
-            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
+            await Sleep.findOneAndDelete({_id:req.body.sleepIdFromJSFile})
             console.log('Deleted Todo')
             res.json('Deleted It')
         }catch(err){
