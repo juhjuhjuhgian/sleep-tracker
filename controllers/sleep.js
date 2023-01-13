@@ -10,24 +10,11 @@ module.exports = {
         }
     },
     createSleepEntry: async (req, res)=>{
-    const input1 = document.querySelector("#st");
-    const input2 = document.querySelector("#aw");
-
-    const date1 = new Date(input1.value);
-    const date2 = new Date(input2.value);
-
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    const diffDays = Math.floor(timeDiff / (1000 * 3600 * 24)); 
-    const diffHrs = Math.floor((timeDiff % (1000 * 3600 * 24)) / (1000 * 3600));
-    const diffMins = Math.floor((timeDiff % (1000 * 3600)) / (1000 * 60));
-    const diffSecs = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
         try{
             await Sleep.create({
                 troubleFalling: req.body.troubleFalling,
                 sleepTime: req.body.sleepTime,
                 wakeTime: req.body.wakeTime,
-                timeAsleep: diffDays, diffHrs, diffMins, diffSecs,
                 moodWhenAwake: req.body.moodWhenAwake
                 })
             console.log('Sleep entry has been added!')

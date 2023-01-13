@@ -9,9 +9,9 @@
 </head>
 <body>
 
-
-    <h2>Enter A New Sleep Entry</h2>
-
+<h2>Enter A New Sleep Entry</h2>
+<div class="container">
+<div class=".left">
     <form action="/sleep/createSleepEntry" method='POST'>
         <h4>Did I Have Trouble Falling Asleep?</h4>
         <div>
@@ -29,33 +29,47 @@
         <input type="text" placeholder="Mood(s)" name='moodWhenAwake'>
         <input type="submit">
     </form>
-
-    <h2>History</h2>
+</div>
+<div class=".right">
+    <h2 class="headerTwo">History</h2>
 
     <table class="table">
         <tr>
-            <th>Trouble Falling Asleep?</th>
+            <th>Trouble Falling</th>
             <th>Sleep Time</th>
             <th>Wake Time</th>
             <th>Total Time Slept</th>
-            <th>Mood When I Woke Up</th>
+            <th>Mood When Awake</th>
         </tr>
         <ul class="list"></ul>
             <% sleeps.forEach( el => { %>
         <tr>
             <td class='sleepItem'><%= el.troubleFalling %></td>
-            <td class='sleepItem'><%= el.sleepTime %></td>
-            <td class='sleepItem'><%= el.wakeTime %></td>
-            <td class='hoursSlept'><%= el.timeAsleep %></td>
+            <td class='sleepItem'>
+                <% var date = new Date() %>
+                <p>Date: <%= el.sleepTime.getDate() + '/' + (el.sleepTime.getMonth() + 1) + '/' + el.sleepTime.getFullYear() %></p>
+                <p>Time: <%= el.sleepTime.getHours() + ':' + el.sleepTime.getMinutes() %></p>
+            </td>
+            <td class='sleepItem'>                
+                <% var date = new Date() %>
+                <p>Date: <%= el.wakeTime.getDate() + '/' + (el.wakeTime.getMonth() + 1) + '/' + el.wakeTime.getFullYear() %></p>
+                <p>Time: <%= el.wakeTime.getHours() + ':' + el.wakeTime.getMinutes() %></p>
+            </td>
+            <td class='hoursSlept'><% var start = new Date(el.sleepTime) %>
+                <% var end = new Date(el.wakeTime) %>
+                <% var difference = end - start %>
+                <% var minutes = difference / 60000 %>
+                <% var hours = Math.floor(minutes / 60) %>
+                <% minutes = minutes % 60 %>
+                <p><%= hours %> hours and <%= minutes %> minutes</p>
             <td class='sleepItem'><%= el.moodWhenAwake %></td>
-
-            <span class='del'> Delete </span>
+            <td><span class='del'> Delete </span></td>
             <% }) %>  
         </tr>
         </ul>
     </table>
-
-
+</div>
+</div>
 
     <script src="js/main.js"></script>
 </body>

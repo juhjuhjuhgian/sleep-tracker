@@ -1,13 +1,20 @@
-h1{
-    color: red;
+.container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 10px;
+    border: 1px solid blue;
 }
-.completed{
-    text-decoration: line-through;
-    color: gray;
+.left {
+    flex: 0.3;
+    border: 2px solid green;
 }
-.not{
-    text-decoration: underline;
+
+.right {
+    flex: 0.7;
+    padding-right: 20px;
+    border: 2px solid yellow;
 }
+
 th{
     border: 1px solid black;
 }

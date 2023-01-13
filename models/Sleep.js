@@ -14,12 +14,6 @@ const sleepSchema = new mongoose.Schema({
     type: Date,
 
   },
-  timeAsleep:{
-    days: Number,
-    hours: Number,
-    minutes: Number,
-    seconds: Number
-  },
   moodWhenAwake: {
     type: String,
 
