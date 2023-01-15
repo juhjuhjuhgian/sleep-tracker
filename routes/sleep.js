@@ -4,11 +4,11 @@ const sleepController = require('../controllers/sleep')
 
 router.get('/', sleepController.getSleepHist)
 
+router.get('/:id', sleepController.getEdit)
+
 router.post('/createSleepEntry', sleepController.createSleepEntry)
 
-router.put('/markComplete', sleepController.markComplete)
-
-router.put('/markIncomplete', sleepController.markIncomplete)
+router.post('/:id', sleepController.updateEntry)
 
 router.delete('/deleteSleepEntry', sleepController.deleteSleepEntry)
 

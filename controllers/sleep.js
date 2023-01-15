@@ -1,6 +1,14 @@
 const Sleep = require('../models/Sleep')
 
 module.exports = {
+    getEdit: (req, res) => {
+        const id = req.params.id;
+        Sleep.find({}, (err, tasks) => {
+            res.render("edit.ejs", { 
+                sleeps: tasks, 
+                idTask: id });
+        });
+    },
     getSleepHist: async (req,res)=>{
         try{
             const sleepItems = await Sleep.find()
@@ -17,40 +25,45 @@ module.exports = {
                 wakeTime: req.body.wakeTime,
                 moodWhenAwake: req.body.moodWhenAwake
                 })
-            console.log('Sleep entry has been added!')
+            console.log('Sleep Entry Added')
             res.redirect('/sleep')
         }catch(err){
             console.log(err)
         }
     },
-    markComplete: async (req, res)=>{
-        try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-                completed: true
-            })
-            console.log('Marked Complete')
-            res.json('Marked Complete')
-        }catch(err){
-            console.log(err)
-        }
+    updateEntry: (req, res) => {
+        const id = req.params.id;
+        Sleep.findByIdAndUpdate(
+            id,
+            {
+                troubleFalling: req.body.troubleFalling,
+                sleepTime: req.body.sleepTime,
+                wakeTime: req.body.wakeTime,
+                moodWhenAwake: req.body.moodWhenAwake
+            },
+            err => {
+                if (err) return res.status(500).send(err);
+                res.redirect("/sleep");
+            });
     },
-    markIncomplete: async (req, res)=>{
-        try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-                completed: false
-            })
-            console.log('Marked Incomplete')
-            res.json('Marked Incomplete')
-        }catch(err){
-            console.log(err)
-        }
-    },
+
+    // updateEntry: async (req, res)=>{
+    //     try{
+    //         await Sleep.findOneAndUpdate({_id:req.body.sleepIdFromJSFile},{
+    //         })
+    //         console.log('Entry Updated')
+    //         res.json('Entry Updated')
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // },
+
     deleteSleepEntry: async (req, res)=>{
         console.log(req.body.sleepIdFromJSFile)
         try{
             await Sleep.findOneAndDelete({_id:req.body.sleepIdFromJSFile})
-            console.log('Deleted Todo')
-            res.json('Deleted It')
+            console.log('Deleted Entry')
+            res.json('Deleted Entry')
         }catch(err){
             console.log(err)
         }

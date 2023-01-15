@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracker History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+
+<div class="container2">
+
+        
+        <% sleeps.forEach( el => { %>
+            <% if (el._id==idTask) { %>
+        <div class="left1">
+            <h2 class="entry">Edit Selected Sleep Entry</h2>
+            <form action="/sleep/<%= el._id %>" method='POST'>
+            <h3>Did I Have Trouble Falling Asleep?</h3>
+            <div>
+                <input type="radio" name="troubleFalling" value="Yes"/>
+                <label for="choice1">Yes</label>
+            
+                <input type="radio"  name="troubleFalling" value="No"/>
+                <label for="choice2">No</label>
+            </div>
+            <h3>Time I Went To Sleep?</h3>
+            <input id="st" type="datetime-local" placeholder="Sleep Time" name='sleepTime'>
+            <h3>Time I Woke Up?</h3>
+            <input id="aw" type="datetime-local" placeholder="Wake Time" name='wakeTime'>
+            <h3>Mood When I Woke Up</h3>
+            <input type="text" placeholder="Mood(s)" name='moodWhenAwake'>
+            <input type="submit">
+        </form>
+        </div>
+        <% } else { %>
+        <div class="right1">   
+            <tr>
+                <td class='sleepItem' data-id='<%=el._id%>'><%= el.troubleFalling %></td>
+                <td class='sleepItem' data-id='<%=el._id%>'>
+                    <% var date = new Date() %>
+                    <p>Date: <%= el.sleepTime.getDate() + '/' + (el.sleepTime.getMonth() + 1) + '/' + el.sleepTime.getFullYear() %></p>
+                    <p>Time: <%= el.sleepTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></p>
+                </td>
+                <td class='sleepItem' data-id='<%=el._id%>'>                
+                    <% var date = new Date() %>
+                    <p>Date: <%= el.wakeTime.getDate() + '/' + (el.wakeTime.getMonth() + 1) + '/' + el.wakeTime.getFullYear() %></p>
+                    <p>Time: <%= el.wakeTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></p>
+                </td>
+                <td> <% var start = new Date(el.sleepTime) %>
+                    <% var end = new Date(el.wakeTime) %>
+                    <% var difference = end - start %>
+                    <% var minutes = difference / 60000 %>
+                    <% var hours = Math.floor(minutes / 60) %>
+                    <% minutes = minutes % 60 %>
+                    <p><%= hours %> hours and <%= minutes %> minutes</p>
+                <td class='sleepItem' data-id='<%=el._id%>'><%= el.moodWhenAwake %></td>
+            <% } %>
+        <% }) %>
+        </div> 
+</div>
+    <script src="js/main.js"></script>
+</body>
+</html>
