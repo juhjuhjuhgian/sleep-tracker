@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <h2 class="entry1">Edit Selected Sleep Entry</h2>
 
 
-<div class="container2">
 
-        
+    <div class="one">
         <% sleeps.forEach( el => { %>
             <% if (el._id==idTask) { %>
-        <div class="left1">
-            <h2 class="entry">Edit Selected Sleep Entry</h2>
-            <form action="/sleep/<%= el._id %>" method='POST'>
+
+
+        <form class="i" action="/sleep/<%= el._id %>" method='POST'>
             <h3>Did I Have Trouble Falling Asleep?</h3>
             <div>
                 <input type="radio" name="troubleFalling" value="Yes"/>
@@ -38,10 +38,9 @@
             <input type="text" placeholder="Mood(s)" name='moodWhenAwake'>
             <input type="submit">
         </form>
-        </div>
+
         <% } else { %>
-        <div class="right1">   
-            <tr>
+
                 <td class='sleepItem' data-id='<%=el._id%>'><%= el.troubleFalling %></td>
                 <td class='sleepItem' data-id='<%=el._id%>'>
                     <% var date = new Date() %>
@@ -61,10 +60,10 @@
                     <% minutes = minutes % 60 %>
                     <p><%= hours %> hours and <%= minutes %> minutes</p>
                 <td class='sleepItem' data-id='<%=el._id%>'><%= el.moodWhenAwake %></td>
+
             <% } %>
         <% }) %>
-        </div> 
-</div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
