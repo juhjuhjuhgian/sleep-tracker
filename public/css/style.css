@@ -1,6 +1,6 @@
 *{
     font-family: 'Quicksand', sans-serif;
-    background-color: steelblue;
+    background-color:blanchedalmond;
 }
 .container {
     display: grid;
@@ -50,9 +50,16 @@ th, td{
 .entry1{
     text-align: center;
 }
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 909px) {
     .container{
-        flex-wrap:wrap;
-        flex-direction: column;
-    }
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 15px;
   }
+  th, td{
+    border: 2px solid gray;
+    padding: 4px;
+    text-align: left;
+    font-size: 0.8rem;
+}
+}
