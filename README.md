@@ -4,7 +4,7 @@ Built an app that stores and tracks sleep data submitted by the user. This will 
 
 **Link to project:** https://juhjuhjuhgian-sleep-tracker-app-2023.onrender.com
 
-![image]()
+![image](https://github.com/juhjuhjuhgian/sleep-tracker/blob/main/thumbnail.png)
 
 ## How It's Made:
 
